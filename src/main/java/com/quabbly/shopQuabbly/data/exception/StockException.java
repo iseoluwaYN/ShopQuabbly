@@ -1,2 +1,6 @@
-package com.quabbly.shopQuabbly.data.services;public class StockException {
+package com.quabbly.shopQuabbly.data.exception;
+
+public class StockException extends RuntimeException {
+    public StockException(String s) {
+    }
 }
