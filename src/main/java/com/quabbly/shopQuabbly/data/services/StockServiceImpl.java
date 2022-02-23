@@ -62,7 +62,8 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public void deleteById(Long id) {
-
+        Optional<Stock> stock = stockRepository.findById(id);
+        stock.ifPresent(value -> stockRepository.delete(value));
     }
 
     private void validateStockVariables(StockDTO stockDTO) {
