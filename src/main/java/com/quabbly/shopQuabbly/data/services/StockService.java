@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface StockService {
     Stock create(StockDTO stock);
-    void update(StockDTO stockDTO);
+    Stock update(Long id, StockDTO stockDTO);
     Stock getStock(Long id);
     List<Stock> findAllStocksById();
     void deleteById(Long id);

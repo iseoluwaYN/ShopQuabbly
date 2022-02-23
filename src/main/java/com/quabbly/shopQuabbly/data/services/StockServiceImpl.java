@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StockServiceImpl implements StockService{
@@ -29,13 +30,29 @@ public class StockServiceImpl implements StockService{
     }
 
     @Override
-    public void update(StockDTO stockDTO) {
-
+    public Stock update(Long id, StockDTO stockDTO) {
+        if(stockDTO == null){
+            throw new StockException("Stock cannot be null");
+        }
+        validateStockVariables (stockDTO);
+        Optional<Stock> optionalStock = stockRepository.findById(id);
+        if(optionalStock.isPresent()){
+            Stock foundStock = optionalStock.get();
+            ModelMapper modelMapper = new ModelMapper();
+            modelMapper.map(stockDTO, foundStock);
+            return foundStock;
+        }
+        throw new StockException("Stock with this id does not exist");
     }
 
     @Override
     public Stock getStock(Long id) {
-        return null;
+        Optional<Stock> stockToGet = stockRepository.findById(id);
+        if(stockToGet.isPresent()){
+            return stockToGet.get();
+        }else {
+            throw new StockException("Stock does not exist");
+        }
     }
 
     @Override
