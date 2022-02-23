@@ -56,8 +56,8 @@ public class StockServiceImpl implements StockService{
     }
 
     @Override
-    public List<Stock> findAllStocksById() {
-        return null;
+    public List<Stock> findAllStocks() {
+        return stockRepository.findAll();
     }
 
     @Override
