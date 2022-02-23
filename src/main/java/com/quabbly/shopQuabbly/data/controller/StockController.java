@@ -4,16 +4,17 @@ import com.quabbly.shopQuabbly.data.dto.StockDTO;
 import com.quabbly.shopQuabbly.data.model.Stock;
 import com.quabbly.shopQuabbly.data.services.StockService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@Controller
 @Slf4j
-@RestController("/api/v1/stocks")
+@RestController
+@RequestMapping("/api/v1/stocks")
 public class StockController {
 
+    @Autowired
     StockService stockServiceImpl;
 
     @PostMapping("/")
