@@ -70,4 +70,16 @@ class StockServiceImplTest {
         assertThat( 12500.0).isEqualTo(updatedStock.getCurrentPrice());
     }
 
+    @Test
+    void deleteStockById(){
+        StockDTO stock = new StockDTO();
+        stock.setName("headset");
+        stock.setCurrentPrice(12000.00);
+
+        Stock createdStock = stockServiceImpl.create(stock);
+        assertNotNull(createdStock.getId());
+
+        stockServiceImpl.deleteById(1L);
+    }
+
 }
